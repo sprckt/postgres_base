@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  pg_db:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: pg_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - dbt-net
+
+networks:
+  dbt-net:
+    name: dbt-net
